@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 const options = {
-  baseURL: '/'
+  baseURL: 'http://localhost:3000'
 }
 
 const instance = Axios.create(options)

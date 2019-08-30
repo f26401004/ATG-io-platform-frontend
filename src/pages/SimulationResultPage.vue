@@ -9,7 +9,7 @@
         el-col( v-bind:span="3" )
           div(
             v-scroll-reveal="{ delay: 600 }"
-            v-bind:class="{'winner_graphic_container': status, 'loser_graphic_container': !status }"
+            v-bind:class="{'winner_graphic_container': result, 'loser_graphic_container': !result }"
           )
       el-row(
         type="flex"
@@ -34,7 +34,7 @@
             align="middle"
           )
             el-col( v-bind:span="24" )
-              p You {{ status ? 'win' : 'lose to' }} our bot!
+              p You {{ result ? 'win' : 'lose to' }} our bot!
               p Elpased Time: {{ (elapsedTime / 1000).toFixed(2) }}
           el-row(
             type="flex"
@@ -67,7 +67,7 @@ export default {
     return {
       username: '',
       elapsedTime: -1,
-      status: false
+      result: false
     }
   },
   computed: {
@@ -78,12 +78,13 @@ export default {
         authCode: this.$store.getters['competition/getAuthCode'],
         elapsedTime: this.$store.getters['competition/getSimulationElapsedTime'],
         score: this.$store.getters['competition/getSimulationScore'],
-        status: this.$store.getters['competition/getSimulationStatus']
+        result: this.$store.getters['competition/getSimulationResult']
       })
       // copy the data from store
       this.username = this.$store.getters['competition/getUsername']
       this.elapsedTime = this.$store.getters['competition/getSimulationElapsedTime']
-      this.status = this.$store.getters['competition/getSimulationStatus']
+      this.result = this.$store.getters['competition/getSimulationResult']
+      console.log(this.$store.getters['competition/getSimulationStatus'])
       // erase all simualtion data
       this.$store.commit('competition/SET_SIMULATION_ACTIVE', false)
       this.$store.commit('competition/SET_SIMULATION_RESULT', false)

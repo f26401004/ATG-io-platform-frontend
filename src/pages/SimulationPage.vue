@@ -207,6 +207,7 @@ export default {
       // if the message do not contain player information, then close the simulation
       if (!message.playerUser) {
         this.completed = true
+        console.log(message)
         // store the result information
         this.$store.commit('competition/SET_SIMULATION_ACTIVE', false)
         this.$store.commit('competition/SET_SIMULATION_RESULT', message.status)
