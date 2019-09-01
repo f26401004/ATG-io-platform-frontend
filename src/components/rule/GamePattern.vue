@@ -128,7 +128,7 @@ export default {
     justify-items: center;
     align-content: center;
     align-items: center;
-    width: 80vw;
+    width: 100%;
     height: 80vw;
     max-width: 320px;
     max-height: 320px;
@@ -141,8 +141,8 @@ export default {
     background-size: 100%;
     background-repeat: no-repeat;
 
-    width: 90vw;
-    height: 90vw;
+    width: 100%;
+    height: 80vw;
     max-width: 200px;
     max-height: 200px;
   }

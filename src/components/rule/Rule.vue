@@ -18,11 +18,16 @@
             align="middle"
           )
             el-col( v-bind:span="23" )
-              div(
-                v-scroll-reveal
-                class="rule_game_graphic_container"
+              el-row(
+                type="flex"
+                justify="center"
+                align="middle"
               )
-          
+                div(
+                  v-scroll-reveal
+                  class="rule_game_graphic_container"
+                )
+            
           el-row(
             type="flex"
             justify="start"
@@ -86,10 +91,15 @@
               v-bind:offset="1"
               v-bind:span="22"
             )
-              div(
-                v-scroll-reveal
-                class="rule_competition_graphic_container"
+              el-row(
+                type="flex"
+                justify="center"
+                align="middle"
               )
+                div(
+                  v-scroll-reveal
+                  class="rule_competition_graphic_container"
+                )
           el-row(
             type="flex"
             justify="start"
@@ -468,8 +478,8 @@ export default {
 
   }
   .rule_game_graphic_container {
-    width: 80vw;
-    height: 80vw;
+    width: 34vh;
+    height: 34vh;
     max-width: 320px;
     max-height: 320px;
     background-image: url("../../assets/graphics/Game.svg");
@@ -480,8 +490,8 @@ export default {
     border-radius: 100%;
   }
   .rule_competition_graphic_container {
-    width: 80vw;
-    height: 80vw;
+    width: 34vh;
+    height: 34vh; 
     max-width: 320px;
     max-height: 320px;
     background-image: url("../../assets/graphics/Competition.svg");
