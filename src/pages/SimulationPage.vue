@@ -1,18 +1,15 @@
 <template lang="pug">
   el-row( 
-    type="flex"
-    justify="center"
+    v-bind:justify="mode === 1 ? 'start' : 'center'"
     align="middle"
     class="simulation_page_root"
   )
-    el-col(
-      v-bind:offset="1"
-      v-bind:span="mode === 1 ? 22 : 12"
-      v-bind:class="{'non_start_style': !start}"
-    )
+    el-col( v-bind:span="mode === 1 ? 24 : 12" )
       v-stage(
         v-if="mode === 1"
         v-bind:config="stageConfig"
+        v-bind:class="{ 'non_start_style': !start }"
+        class="resize_container"
       )
         v-layer
           v-rect( v-bind:config="backgroundConfig" )
@@ -41,7 +38,6 @@
         class="terminal_window_style"
       )
         p( class="terminal_text" ) {{ terminalMessage }}
-
 
 </template>
 
@@ -197,6 +193,12 @@ export default {
   mounted: function () {
     // config the message callback function
     this.$store.commit('competition/REGISTER_MESSAGE_CALLBACK', this.callback.bind(this))
+    // change the ratio variable
+    console.log(1 / window.devicePixelRatio)
+    document.documentElement.style .setProperty('--ratio', 1 / window.devicePixelRatio);
+    document.documentElement.style .setProperty('--width', this.mode === 1 ? '1600px' : '800px');
+    document.documentElement.style .setProperty('--height', this.mode === 1 ? '900px' : '600px');
+    console
   },
   methods: {
     callback: function (e) {
@@ -277,8 +279,7 @@ export default {
       const terminal = document.querySelector('.terminal_window_style')
       terminal.scrollTop = terminal.scrollHeight - terminal.clientHeight
       if (terminal.scrollTop > 0) {
-        this.terminalMessage = this.terminalMessage.slice(-200)
-        console.log(this.terminalMessage)
+        this.terminalMessage = this.terminalMessage.slice(-250)
       }
     }
   }
@@ -286,6 +287,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  :root {
+    --ratio: 0;
+    --width: 0;
+    --height: 0;
+  }
+  .resize_container {
+    transform: scale(var(--ratio)) !important;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+  }
   .simulation_page_root {
     min-height: calc(100vh - 240px);
     padding: 64px 0 0 0;
@@ -293,28 +307,27 @@ export default {
   }
 
   .non_start_style {
-    position: relative;
     &:after {
       content: 'Server now is starting the simulation ...';
       position: absolute;
       display: flex;
+      left: calc(50% - var(--width) * var(--ratio) / 2);
+      top: calc(50% - var(--height) * var(--ratio) / 2);
       justify-content: center;
       justify-items: center;
       align-content: center;
       align-items: center;
-      top: 0;
-      left: 0;
-      width: 1600px;
-      height: 100%;
-
+      width: calc(var(--width) * var(--ratio));
+      height: calc(var(--height) * var(--ratio));
       background-color: rgba(0, 0, 0, 0.18);
       color: white;
+      z-index: 999;
     }
   }
 
   .terminal_window_style {
     background-color: black;
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
     width: 800px;
     height: 600px;
     max-height: 600px;
@@ -322,6 +335,10 @@ export default {
     padding: 16px;
     box-sizing: border-box;
     white-space: pre-line;
+
+    overflow: hidden;
+    border-top: 24px solid #DDD;
+
   }
   .terminal_text {
     margin: 0;

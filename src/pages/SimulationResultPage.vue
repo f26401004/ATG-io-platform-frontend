@@ -6,11 +6,10 @@
         justify="center"
         align="middle"
       )
-        el-col( v-bind:span="3" )
-          div(
-            v-scroll-reveal="{ delay: 600 }"
-            v-bind:class="{'winner_graphic_container': result, 'loser_graphic_container': !result }"
-          )
+        div(
+          v-scroll-reveal="{ delay: 600 }"
+          v-bind:class="{'winner_graphic_container': result, 'loser_graphic_container': !result }"
+        )
       el-row(
         type="flex"
         justify="center"
@@ -74,6 +73,7 @@ export default {
   },
   mounted: async function () {
     try {
+      // record the data
       await this.$store.dispatch('rank/upsertRank', {
         authCode: this.$store.getters['competition/getAuthCode'],
         elapsedTime: this.$store.getters['competition/getSimulationElapsedTime'],
@@ -84,7 +84,8 @@ export default {
       this.username = this.$store.getters['competition/getUsername']
       this.elapsedTime = this.$store.getters['competition/getSimulationElapsedTime']
       this.result = this.$store.getters['competition/getSimulationResult']
-      console.log(this.$store.getters['competition/getSimulationStatus'])
+      // send close message to server
+      this.$store.commit('competition/SEND_MESSAGE', 'Close')
       // erase all simualtion data
       this.$store.commit('competition/SET_SIMULATION_ACTIVE', false)
       this.$store.commit('competition/SET_SIMULATION_RESULT', false)
@@ -105,7 +106,7 @@ export default {
 
 <style lang="scss" scoped>
   .simulation_result_page_root {
-    min-height: calc(100vh - 240px);
+    min-height: calc(100vh);
     padding: 128px 0 64px 0;
     box-sizing: border-box;
 
@@ -159,8 +160,10 @@ export default {
     background-repeat: no-repeat;
     border-radius: 100%;
 
-    width: 240px;
-    height: 240px;
+    width: 36vh;
+    height: 36vh;
+    max-width: 240px;
+    max-height: 240px;
   }
 
   .result_information_container {
