@@ -38,8 +38,8 @@
               )
                 span 3
               span {{ iter.Username }}
-            label {{ iter.ElapsedTime }} (s)
-            time {{ iter.UpdatedAt }}
+            label {{ (iter.ElapsedTime / 1000).toFixed(2) }} (s)
+            time {{ new Date(iter.UpdatedAt).toLocaleString() }}
       el-row
         el-pagination(
           background
