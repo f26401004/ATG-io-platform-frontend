@@ -153,7 +153,7 @@
                 type="primary"
                 v-on:click="setStep(currentStep - 1)"
               ) Prev
-            el-col( v-bind:span="2" )
+            el-col( v-bind:span="3" )
               el-button(
                 style="width: 100%;"
                 type="primary"

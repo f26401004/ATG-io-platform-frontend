@@ -70,6 +70,12 @@ const mutations = {
     }
     state.simulation.socket.onmessage = data
   },
+  'SEND_MESSAGE': function (state, data) {
+    if (data.length === 0) {
+      return
+    }
+    state.simulation.socket.send(data)
+  },
   'CLOSE_SOCKET': function (state) {
     state.simulation.socket.close()
   }

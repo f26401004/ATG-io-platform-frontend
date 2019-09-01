@@ -1,8 +1,8 @@
 <template lang="pug">
   el-row
     el-col( v-bind:span="24" )
-      el-header( class="diep_header_container hidden-sm-and-up" )
-        el-row
+      el-header( class="diep_header_container" )
+        el-row( class="hidden-sm-and-up" )
           el-col( v-bind:span="24" )
             el-drawer(
               v-bind:visible.sync="drawerOpen"
@@ -51,42 +51,9 @@
                 ) Rules
               
         el-row( v-bind:gutter="20" )
-          el-col( v-bind:span="12" )
-            el-row(
-              type="flex"
-              justify="start"
-              align="middle"
-              v-bind:gutter="16"
-            )
-              el-col( v-bind:offset="1" v-bind:span="8" )
-                router-link(
-                  tag="div"
-                  class="header_icon brain_icon"
-                  to="/"
-                )
-              el-col( v-bind:span="12" )
-                router-link(
-                  tag="h2"
-                  class="diep_header_title"
-                  to="/"
-                ) ATG.io
-          el-col( v-bind:span="12" )
-            el-row(
-              type="flex"
-              justify="end"
-              align="middle"
-            )
-              el-col( v-bind:span="8" )
-                el-button(
-                  circle
-                  icon="el-icon-menu"
-                  v-on:click="drawerOpen = true"
-                )
-      el-header( class="diep_header_container hidden-xs-only" )
-        el-row( v-bind:gutter="20" )
           el-col(
-            v-bind:offset="2"
-            v-bind:span="6"
+            v-bind:xs="{ span: 24 }"
+            v-bind:sm="{ offset: 2, span: 6 }"
           )
             el-row(
               type="flex"
@@ -94,21 +61,37 @@
               align="middle"
               v-bind:gutter="16"
             )
-              el-col( v-bind:offset="1" v-bind:span="3" )
+              el-col(
+                v-bind:xs="{ offset: 0, span: 4 }"
+                v-bind:sm="{ offset: 1, span: 3 }"
+              )
                 router-link(
                   tag="div"
                   class="header_icon brain_icon"
                   to="/"
                 )
-              el-col( v-bind:span="21" )
+              el-col(
+                v-bind:xs="{ offset: 0, span: 14 }"
+                v-bind:sm="{ offset: 0, span: 21 }"
+              )
                 router-link(
                   tag="h2"
                   class="diep_header_title"
                   to="/"
                 ) ATG.io
+              el-col(
+                v-bind:xs="{ offset: 2, span: 4 }"
+                class="hidden-sm-and-up"
+              )
+                el-button(
+                  circle
+                  icon="el-icon-menu"
+                  v-on:click="drawerOpen = true"
+                )
           el-col(
             v-bind:offset="4"
             v-bind:span="8"
+            class="hidden-xs-only"
           )
             el-row(
               type="flex"
@@ -128,6 +111,7 @@
                 ) Rules
           el-col(
             v-bind:span="2"
+            class="hidden-xs-only"
           )
             el-row(
               type="flex"

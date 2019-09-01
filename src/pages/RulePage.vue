@@ -9,7 +9,8 @@
     )
       el-col(
         v-bind:offset="2"
-        v-bind:span="layoutDetect"
+        v-bind:xs="{ span: 20 }"
+        v-bind:sm="{ span: 16 }"
       )
         game-pattern
         rule
@@ -61,11 +62,6 @@ export default {
     Flow,
     MessageFormat,
     Debuger
-  },
-  computed: {
-    layoutDetect: function () {
-      return document.body.clientWidth > 768 ? 16 : 20
-    }
   }
 }
 </script>

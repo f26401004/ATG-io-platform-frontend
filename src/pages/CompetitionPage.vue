@@ -78,8 +78,10 @@ export default {
     mask-size: contain;
     mask-repeat: no-repeat;
 
-    width: 240px;
-    height: 240px;
+    width: 36vh;
+    height: 36vh;
+    max-width: 240px;
+    max-height: 240px;
     margin: 64px;
   }
   .competition_submit_row {

@@ -11,7 +11,7 @@
             id="rules"
             style="text-align: left;"
           ) <i class="el-icon-cpu"/> Debuger
-          p TBA
+          p( style="text-align: left;" ) TBA
 </template>
 
 <script>

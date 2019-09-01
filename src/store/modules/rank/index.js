@@ -23,9 +23,8 @@ const actions = {
   getRankData: async function (context) {
     const result = await axios.get('/api/rank')
     if (result.data) {
-      console.log(result.data.filter(target => !target.Status))
-      context.commit('SET_RANKWINNER', result.data.filter(target => target.Status))
-      context.commit('SET_RANKLOSER', result.data.filter(target => !target.Status))
+      context.commit('SET_RANKWINNER', result.data.filter(target => target.Result))
+      context.commit('SET_RANKLOSER', result.data.filter(target => !target.Result))
     }
   },
   upsertRank: async function (context, data) {
