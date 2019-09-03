@@ -106,6 +106,7 @@ export default {
 
 <style lang="scss" scoped>
   .simulation_result_page_root {
+    position: relative;
     min-height: calc(100vh);
     padding: 128px 0 64px 0;
     box-sizing: border-box;
@@ -115,14 +116,14 @@ export default {
       display: block;
       position: absolute;
       top: 0;
-      left: 0;
+      left: -25%;
       background-image: url("../assets/graphics/Polyline.svg");
-      background-position: -50% 0%;
+      background-position: 50% 50%;
       background-size: contain;
       background-repeat: no-repeat;
       width: 100%;
       height: 100%;
-      opacity: 0.54;
+      opacity: 0.36;
       z-index: -1;
     }
     &:after {
@@ -130,14 +131,14 @@ export default {
       display: block;
       position: absolute;
       top: 0;
-      left: 0;
+      left: 25%;
       background-image: url("../assets/graphics/Polyline.svg");
-      background-position: -50% 0%;
+      background-position: 50% 50%;
       background-size: contain;
       background-repeat: no-repeat;
       width: 100%;
       height: 100%;
-      opacity: 0.54;
+      opacity: 0.36;
       transform: scaleX(-1) scaleY(-1);
       z-index: -1;
     }
